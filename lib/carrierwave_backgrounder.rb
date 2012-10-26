@@ -58,7 +58,7 @@ module CarrierWave
       def enqueue_for_backend(worker, class_name, subject_id, mounted_as)
         case backend
         when :stalker
-          ::Stalker.enqueue(worker, class_name, subject_id, mounted_as)
+          ::Stalker.enqueue("carrierwave.#{class_name.tableize}",:worker => worker, :class_name => class_name, :subject => subject_id, :mounted_as => mounted_as)
         when :girl_friday
           @girl_friday_queue << { :worker => worker.new(self.class.name, subject_id, mounted_as) }
         when :delayed_job
