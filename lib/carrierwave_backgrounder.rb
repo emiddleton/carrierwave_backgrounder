@@ -34,6 +34,7 @@ module CarrierWave
       def available_backends
         @available_backends ||= begin
           backends = []
+          backends << :stalker     if defined? ::Stalker
           backends << :girl_friday if defined? ::GirlFriday
           backends << :delayed_job if defined? ::Delayed::Job
           backends << :resque      if defined? ::Resque
@@ -56,6 +57,8 @@ module CarrierWave
 
       def enqueue_for_backend(worker, class_name, subject_id, mounted_as)
         case backend
+        when :stalker
+          ::Stalker.enqueue(worker, class_name, subject_id, mounted_as)
         when :girl_friday
           @girl_friday_queue << { :worker => worker.new(self.class.name, subject_id, mounted_as) }
         when :delayed_job
