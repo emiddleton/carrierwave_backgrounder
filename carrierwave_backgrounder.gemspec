@@ -8,10 +8,9 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Larry Sprock"]
   s.email       = ["larry@lucidbleu.com"]
-  s.homepage    = ""
-  s.summary     = %q{Offload CarrierWave's image processing and storage to a background process using Delayed Job}
-
-  s.rubyforge_project = "carrierwave_backgrounder"
+  s.homepage    = "https://github.com/lardawge/carrierwave_backgrounder"
+  s.licenses    = ["MIT"]
+  s.summary     = %q{Offload CarrierWave's image processing and storage to a background process using Delayed Job, Resque, Sidekiq, Qu, Queue Classic or Girl Friday}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
@@ -20,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "carrierwave", ["~> 0.5"]
 
-  s.add_development_dependency "rspec", ["2.5.0"]
-  s.add_development_dependency "mocha", ["~> 0.9"]
+  s.add_development_dependency "rspec", ["~> 2.12.0"]
+  s.add_development_dependency "mocha", ["~> 0.13.0"]
   s.add_development_dependency "rake"
 end

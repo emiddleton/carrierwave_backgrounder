@@ -1,8 +1,8 @@
 # encoding: utf-8
 require 'rubygems'
 require 'bundler/setup'
-require 'support/backend_constants'
 require 'logger'
+require 'carrierwave_backgrounder'
 
 module WarningSuppression
   def suppress_warnings
